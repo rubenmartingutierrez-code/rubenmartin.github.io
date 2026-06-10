@@ -97,9 +97,12 @@
             background-repeat: no-repeat;
             background-position: center;
             z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .character.walking {
+            opacity: 1;
             animation: walk 0.8s linear infinite;
         }
 
@@ -147,8 +150,8 @@
         const scrollContainer = document.getElementById('scrollContainer');
         const character = document.getElementById('character');
 
-        // GIF gratuito de una persona andando
-        const gifUrl = 'https://media.giphy.com/media/l0HlGy9x8FZo0XO1i/giphy.gif';
+        // GIF de Sonic corriendo
+        const gifUrl = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/soniccorriendo.gif';
         character.style.backgroundImage = `url('${gifUrl}')`;
 
         let scrollTimeout;
