@@ -13,8 +13,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: #1a1a1a;
+            color: #fff;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -26,6 +26,7 @@
         h1 {
             margin-bottom: 20px;
             font-weight: 600;
+            letter-spacing: 2px;
         }
 
         /* Contenedor principal del scroll */
@@ -34,68 +35,107 @@
             gap: 20px;
             width: 90%;
             max-width: 1200px;
-            padding: 20px;
+            padding: 30px;
             overflow-x: auto;
-            scroll-behavior: smooth;
-            /* Efecto de "snapping" para que las tarjetas se alineen solas al scrollear */
+            /* Eliminamos 'scroll-behavior: smooth' temporalmente aquí 
+               porque JavaScript se encarga de gestionar el movimiento */
             scroll-snap-type: x mandatory;
-            background-color: #ffffff;
+            background-color: #252525;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         /* Estilo para las tarjetas/ítems */
         .scroll-item {
-            flex: 0 0 300px; /* No se encogen, no crecen, base de 300px */
-            height: 400px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            flex: 0 0 250px;
+            height: 350px;
+            background: #333333;
+            border: 2px solid #444;
             border-radius: 8px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
+            padding: 20px;
             scroll-snap-align: start;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .scroll-item:hover {
-            transform: scale(1.02);
+            transform: translateY(-5px);
+            border-color: #764ba2;
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
         }
 
-        /* Personalización de la barra de scroll (opcional, para que se vea más bonita) */
+        .scroll-item img {
+            max-width: 100%;
+            max-height: 70%;
+            object-fit: contain;
+            image-rendering: pixelated; 
+        }
+
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+
+        /* Personalización de la barra de scroll */
         .scroll-container::-webkit-scrollbar {
             height: 8px;
         }
 
         .scroll-container::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #252525;
             border-radius: 10px;
         }
 
         .scroll-container::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
+            background: #444;
             border-radius: 10px;
         }
 
         .scroll-container::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
+            background: #667eea;
         }
     </style>
 </head>
 <body>
 
-    <h1>Galería Horizontal</h1>
+    <h1>Moonwalker Gallery</h1>
 
-    <div class="scroll-container">
-        <div class="scroll-item">Ítem 1</div>
-        <div class="scroll-item">Ítem 2</div>
-        <div class="scroll-item">Ítem 3</div>
-        <div class="scroll-item">Ítem 4</div>
-        <div class="scroll-item">Ítem 5</div>
-        <div class="scroll-item">Ítem 6</div>
+    <div class="scroll-container" id="horizontal-scroll">
+        <div class="scroll-item">
+            <div class="item-title">Paso 1</div>
+        </div>
+        <div class="scroll-item">
+            <div class="item-title">Paso 2</div>
+        </div>
+        <div class="scroll-item">
+            <div class="item-title">Paso 3</div>
+        </div>
+        <div class="scroll-item">
+            <div class="item-title">Paso 4</div>
+        </div>
+        <div class="scroll-item">
+            <div class="item-title">Paso 5</div>
+        </div>
+        <div class="scroll-item">
+            <div class="item-title">Paso 6</div>
+        </div>
     </div>
+
+    <script>
+        const container = document.getElementById('horizontal-scroll');
+
+        container.addEventListener('wheel', (evt) => {
+            // Evita que la página web entera haga scroll hacia abajo
+            evt.preventDefault();
+            
+            // Suma el movimiento vertical de la rueda (deltaY) al scroll horizontal del contenedor
+            container.scrollLeft += evt.deltaY;
+        });
+    </script>
 
 </body>
 </html>
