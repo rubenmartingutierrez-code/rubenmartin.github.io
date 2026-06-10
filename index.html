@@ -85,7 +85,7 @@
             transform: scale(1.02);
         }
 
-        /* Estilos para el personaje */
+        /* Estilos para el personaje - CENTRADO, SIN DESPLAZAMIENTO */
         .character {
             position: fixed;
             bottom: 50px;
@@ -99,15 +99,6 @@
             z-index: 1000;
             opacity: 1;
             transition: opacity 0.3s ease;
-        }
-
-        .character.walking {
-            animation: walk 0.8s linear infinite;
-        }
-
-        @keyframes walk {
-            0% { transform: translateX(-50%) translateX(0); }
-            100% { transform: translateX(-50%) translateX(100px); }
         }
 
         /* Personalizar scrollbar */
@@ -166,14 +157,12 @@
         scrollContainer.addEventListener('scroll', () => {
             // Cambiar a Sonic corriendo
             character.style.backgroundImage = `url('${sonicCorriendo}')`;
-            character.classList.add('walking');
 
             // Limpiar el timeout anterior
             clearTimeout(scrollTimeout);
 
             // Detener la animación después de 600ms sin scroll
             scrollTimeout = setTimeout(() => {
-                character.classList.remove('walking');
                 // Cambiar a Sonic parado
                 character.style.backgroundImage = `url('${sonicParado}')`;
             }, 600);
