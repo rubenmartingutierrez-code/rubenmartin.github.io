@@ -85,37 +85,20 @@
             transform: scale(1.02);
         }
 
-        /* Estilos para el personaje - SPRITE SHEET ANIMATION */
+        /* Estilos para el personaje - CENTRADO, SIN DESPLAZAMIENTO */
         .character {
             position: fixed;
             bottom: 50px;
             left: 50%;
             transform: translateX(-50%);
-            width: 188px;
-            height: 329px;
-            background-image: url('https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avatar%20andando2.png');
-            background-size: 1316px 329px;
-            background-position: 0 0;
+            width: 120px;
+            height: 120px;
+            background-size: contain;
             background-repeat: no-repeat;
+            background-position: center;
             z-index: 1000;
             opacity: 1;
             transition: opacity 0.3s ease;
-        }
-
-        /* Animación del sprite sheet - 7 fotogramas */
-        .character.walking {
-            animation: spriteAnimation 0.7s steps(7, end) infinite;
-        }
-
-        @keyframes spriteAnimation {
-            0% { background-position: 0 0; }
-            14.28% { background-position: -188px 0; }
-            28.56% { background-position: -376px 0; }
-            42.84% { background-position: -564px 0; }
-            57.12% { background-position: -752px 0; }
-            71.4% { background-position: -940px 0; }
-            85.68% { background-position: -1128px 0; }
-            100% { background-position: -1128px 0; }
         }
 
         /* Personalizar scrollbar */
@@ -157,6 +140,13 @@
         const scrollContainer = document.getElementById('scrollContainer');
         const character = document.getElementById('character');
 
+        // GIFs de Sonic
+        const sonicCorriendo = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/soniccorriendo.gif';
+        const sonicParado = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/sonicparado.gif';
+
+        // Inicialmente mostrar Sonic parado
+        character.style.backgroundImage = `url('${sonicParado}')`;
+
         let scrollTimeout;
 
         scrollContainer.addEventListener('wheel', (e) => {
@@ -165,15 +155,16 @@
         });
 
         scrollContainer.addEventListener('scroll', () => {
-            // Activar animación del sprite sheet
-            character.classList.add('walking');
+            // Cambiar a Sonic corriendo
+            character.style.backgroundImage = `url('${sonicCorriendo}')`;
 
             // Limpiar el timeout anterior
             clearTimeout(scrollTimeout);
 
             // Detener la animación después de 600ms sin scroll
             scrollTimeout = setTimeout(() => {
-                character.classList.remove('walking');
+                // Cambiar a Sonic parado
+                character.style.backgroundImage = `url('${sonicParado}')`;
             }, 600);
         });
     </script>
