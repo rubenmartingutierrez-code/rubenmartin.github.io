@@ -85,6 +85,29 @@
             transform: scale(1.02);
         }
 
+        /* Estilos para el personaje */
+        .character {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1000;
+        }
+
+        .character.walking {
+            animation: walk 0.8s linear infinite;
+        }
+
+        @keyframes walk {
+            0% { transform: translateX(-50%) translateX(0); }
+            100% { transform: translateX(-50%) translateX(100px); }
+        }
+
         /* Personalizar scrollbar */
         .scroll-container::-webkit-scrollbar {
             height: 8px;
@@ -105,6 +128,8 @@
     </style>
 </head>
 <body>
+    <div class="character" id="character"></div>
+
     <div class="scroll-container" id="scrollContainer">
         <div class="scroll-content">
             <div class="scroll-item">Item 1</div>
@@ -120,10 +145,30 @@
 
     <script>
         const scrollContainer = document.getElementById('scrollContainer');
+        const character = document.getElementById('character');
+
+        // GIF gratuito de una persona andando
+        const gifUrl = 'https://media.giphy.com/media/l0HlGy9x8FZo0XO1i/giphy.gif';
+        character.style.backgroundImage = `url('${gifUrl}')`;
+
+        let scrollTimeout;
 
         scrollContainer.addEventListener('wheel', (e) => {
             e.preventDefault();
             scrollContainer.scrollLeft += e.deltaY;
+        });
+
+        scrollContainer.addEventListener('scroll', () => {
+            // Añadir la clase de animación
+            character.classList.add('walking');
+
+            // Limpiar el timeout anterior
+            clearTimeout(scrollTimeout);
+
+            // Detener la animación después de 600ms sin scroll
+            scrollTimeout = setTimeout(() => {
+                character.classList.remove('walking');
+            }, 600);
         });
     </script>
 </body>
