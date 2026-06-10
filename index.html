@@ -97,12 +97,11 @@
             background-repeat: no-repeat;
             background-position: center;
             z-index: 1000;
-            opacity: 0;
+            opacity: 1;
             transition: opacity 0.3s ease;
         }
 
         .character.walking {
-            opacity: 1;
             animation: walk 0.8s linear infinite;
         }
 
@@ -150,9 +149,12 @@
         const scrollContainer = document.getElementById('scrollContainer');
         const character = document.getElementById('character');
 
-        // GIF de Sonic corriendo
-        const gifUrl = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/soniccorriendo.gif';
-        character.style.backgroundImage = `url('${gifUrl}')`;
+        // GIFs de Sonic
+        const sonicCorriendo = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/soniccorriendo.gif';
+        const sonicParado = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/sonicparado.gif';
+
+        // Inicialmente mostrar Sonic parado
+        character.style.backgroundImage = `url('${sonicParado}')`;
 
         let scrollTimeout;
 
@@ -162,7 +164,8 @@
         });
 
         scrollContainer.addEventListener('scroll', () => {
-            // Añadir la clase de animación
+            // Cambiar a Sonic corriendo
+            character.style.backgroundImage = `url('${sonicCorriendo}')`;
             character.classList.add('walking');
 
             // Limpiar el timeout anterior
@@ -171,6 +174,8 @@
             // Detener la animación después de 600ms sin scroll
             scrollTimeout = setTimeout(() => {
                 character.classList.remove('walking');
+                // Cambiar a Sonic parado
+                character.style.backgroundImage = `url('${sonicParado}')`;
             }, 600);
         });
     </script>
