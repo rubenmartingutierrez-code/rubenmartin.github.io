@@ -579,37 +579,60 @@
 
         </div>
     </div>
-	    <script>
-        const scrollContainer = document.getElementById('scrollContainer');
-        const character = document.getElementById('character');
+<script>
+    const scrollContainer = document.getElementById('scrollContainer');
+    const character = document.getElementById('character');
 
-        // GIFs de Rubén
-        const avatarAndando = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avatarwalking.gif';
-        const avatarParado = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avataridle.gif';
+    // GIFs de Rubén
+    const avatarAndando = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avatarwalking.gif';
+    const avatarParado = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avataridle.gif';
 
-        // Inicialmente mostrar Rubén parado
-        character.style.backgroundImage = `url('${avatarParado}')`;
+    // Inicialmente mostrar Rubén parado
+    character.style.backgroundImage = `url('${avatarParado}')`;
 
-        let scrollTimeout;
+    let scrollTimeout;
+    let isScrolling = false;
+    let lastScrollLeft = scrollContainer.scrollLeft; // Guardamos la posición inicial
 
-        scrollContainer.addEventListener('wheel', (e) => {
+    // Manejo del scroll con la rueda del ratón (corregido para navegadores modernos)
+    scrollContainer.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) > 0) {
             e.preventDefault();
-            scrollContainer.scrollLeft += e.deltaY;
-        });
+            scrollContainer.scrollLeft += e.deltaY; 
+        }
+    }, { passive: false });
 
-        scrollContainer.addEventListener('scroll', () => {
-            // Cambiar a Rubén corriendo
+    // Manejo de la animación y dirección del personaje
+    scrollContainer.addEventListener('scroll', () => {
+        const currentScrollLeft = scrollContainer.scrollLeft;
+
+        // 1. Identificar la dirección y voltear el GIF
+        if (currentScrollLeft > lastScrollLeft) {
+            // Avanza hacia la derecha -> Orientación normal
+            character.style.transform = 'translateX(-50%) scaleX(1)';
+        } else if (currentScrollLeft < lastScrollLeft) {
+            // Retrocede hacia la izquierda -> Efecto espejo
+            character.style.transform = 'translateX(-50%) scaleX(-1)';
+        }
+        
+        // Actualizamos la posición de referencia para el próximo movimiento
+        lastScrollLeft = currentScrollLeft;
+
+        // 2. Control del estado de movimiento (Evita parpadeos al recargar el GIF)
+        if (!isScrolling) {
             character.style.backgroundImage = `url('${avatarAndando}')`;
+            isScrolling = true;
+        }
 
-            // Limpiar el timeout anterior
-            clearTimeout(scrollTimeout);
+        // Limpiar el timeout anterior
+        clearTimeout(scrollTimeout);
 
-            // Detener la animación después de 600ms sin scroll
-            scrollTimeout = setTimeout(() => {
-                // Cambiar a Rubén parado
-                character.style.backgroundImage = `url('${avatarParado}')`;
-            }, 300);
-        });
-    </script>
+        // Detener la animación tras 150ms de inactividad
+        scrollTimeout = setTimeout(() => {
+            character.style.backgroundImage = `url('${avatarParado}')`;
+            isScrolling = false;
+        }, 150);
+    });
+</script>
 </body>
 </html>
