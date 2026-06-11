@@ -231,6 +231,181 @@
     margin: 0;
     color: #e0e1dd;
   }
+    :root {
+            --primary-color: #1a365d; /* Azul corporativo */
+            --secondary-color: #2b6cb0; /* Azul de acento */
+            --accent-color: #b7791f; /* Dorado/Bronce de éxito */
+            --bg-light: #f7fafc;
+            --text-dark: #2d3748;
+            --text-muted: #718096;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .infographic-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .info-header {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-header i {
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .info-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        /* Grid de Licitaciones */
+        .tender-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Tarjeta de Licitación */
+        .tender-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tender-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08);
+            border-color: var(--secondary-color);
+        }
+
+        /* Badge de Año / Adjudicación */
+        .tender-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .tender-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .tender-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin: 0 0 12px 0;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .tender-client {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tender-client i {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .tender-desc {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        /* Footer de la infografía */
+        .info-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-tag {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            background-color: #ebf8ff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .infographic-container {
+                padding: 20px;
+            }
+            .info-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .tender-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         
     </style>
 </head>
@@ -290,6 +465,70 @@
     </div>
   </div>
             <div class="scroll-item">Item 3</div>
+
+<div class="infographic-container">
+        <!-- Encabezado de la Sección -->
+        <div class="info-header">
+            <i class="fa-solid fa-gavel"></i>
+            <div>
+                <h2>Preparación y Liderazgo de Ofertas (Licitaciones Públicas)</h2>
+                <p class="info-subtitle">Solvencia técnica y dirección estratégica en propuestas de contratación administrativa.</p>
+            </div>
+        </div>
+
+        <!-- Grid de Contenido con los 3 Hitos -->
+        <div class="tender-grid">
+            
+            <!-- Hito 1: Registro de Cooperativas -->
+            <div class="tender-card">
+                <div class="tender-badge">ADJUDICADO 2019</div>
+                <div>
+                    <div class="tender-icon"><i class="fa-solid fa-file-signature"></i></div>
+                    <h3 class="tender-title">Elaboración de Oferta Completa para el Registro de Cooperativas</h3>
+                    <div class="tender-client"><i class="fa-solid fa-building"></i> Gobierno de Aragón</div>
+                </div>
+                <p class="tender-desc">
+                    Liderazgo en la confección y defensa técnica de la oferta que resultó en la adjudicación estratégica del proyecto a <strong>Minsait</strong>, garantizando el cumplimiento riguroso de las bases concursales.
+                </p>
+            </div>
+
+            <!-- Hito 2: Policía Local de Zaragoza -->
+            <div class="tender-card">
+                <div class="tender-badge">ADJUDICADO 2019</div>
+                <div>
+                    <div class="tender-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="tender-title">Adquisición y Desarrollo de Aplicación Informática para Policía Local</h3>
+                    <div class="tender-client"><i class="fa-solid fa-building-flag"></i> Ayuntamiento de Zaragoza</div>
+                </div>
+                <p class="tender-desc">
+                    <strong>Dirección técnica del equipo</strong> responsable de la elaboración de la propuesta técnica para el Pliego de Prestaciones Técnicas (PPT), logrando la máxima valoración operativa y la posterior adjudicación.
+                </p>
+            </div>
+
+            <!-- Hito 3: Registro Vitivinícola eRVC -->
+            <div class="tender-card">
+                <div class="tender-badge">ADJUDICADO 2025</div>
+                <div>
+                    <div class="tender-icon"><i class="fa-solid fa-wine-glass"></i></div>
+                    <h3 class="tender-title">Evolución del Registro Vitivinícola (eRVC)</h3>
+                    <div class="tender-client"><i class="fa-solid fa-building"></i> Administración Pública</div>
+                </div>
+                <p class="tender-desc">
+                    <strong>Dirección técnica integral del equipo</strong> encargado de estructurar y desarrollar la solución técnica (PPT) para la modernización y evolución del ecosistema eRVC, asegurando el éxito de la adjudicación.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Cierre de Solvencia -->
+        <div class="info-footer">
+            <span class="footer-tag"><i class="fa-solid fa-check-double"></i> Rigor en Pliegos PPT</span>
+            <span class="footer-tag"><i class="fa-solid fa-bullseye"></i> Alta Tasa de Adjudicación</span>
+            <span class="footer-tag"><i class="fa-solid fa-users-gear"></i> Dirección de Equipos Técnicos</span>
+        </div>
+    </div>
+
+            
             <div class="scroll-item">Item 4</div>
             <div class="scroll-item">Item 5</div>
             <div class="scroll-item">Item 6</div>
