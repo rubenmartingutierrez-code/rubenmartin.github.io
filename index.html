@@ -118,6 +118,120 @@
         .scroll-container::-webkit-scrollbar-thumb:hover {
             background: #888;
         }
+
+/* Variables de color adaptadas a tu paleta */
+  :root {
+    --bg-dark: #0d1b2a;
+    --card-bg: #1b263b;
+    --accent-blue: #415a77;
+    --text-light: #f8f9fa;
+    --text-muted: #778da9;
+    --badge-bg: #e0e1dd;
+  }
+
+  .item-trayectoria {
+    padding: 40px;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .header-item h2 {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .header-item p {
+    color: var(--text-muted);
+    margin: 5px 0 30px 0;
+    font-size: 1.1rem;
+  }
+
+  /* Contenedor flexible para el scroll horizontal de este ítem */
+  .timeline-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+  }
+
+  .timeline-card {
+    flex: 0 0 300px; /* Ancho fijo para cada tarjeta de hito */
+    background-color: var(--card-bg);
+    border: 1px solid var(--accent-blue);
+    border-radius: 8px;
+    padding: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .timeline-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+
+  /* Clases de realce opcionales para los roles actuales */
+  .current-service { border-color: #52b788; }
+  .current-project { border-color: #4ea8de; }
+
+  .date-badge {
+    display: inline-block;
+    background-color: var(--badge-bg);
+    color: var(--bg-dark);
+    padding: 4px 10px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+
+  .date-badge.highlight { background-color: #52b788; color: white; }
+  .date-badge.highlight-alt { background-color: #4ea8de; color: white; }
+
+  .role {
+    font-size: 1.25rem;
+    margin: 0 0 5px 0;
+    color: var(--text-light);
+  }
+
+  .project {
+    font-size: 1.05rem;
+    font-weight: normal;
+    margin: 0;
+    color: var(--text-light);
+  }
+
+  .client {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .card-divider {
+    height: 1px;
+    background-color: var(--accent-blue);
+    margin: 15px 0;
+  }
+
+  .impact-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin: 0 0 5px 0;
+    font-weight: bold;
+  }
+
+  .impact-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+    color: #e0e1dd;
+  }
+        
     </style>
 </head>
 <body>
