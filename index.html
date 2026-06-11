@@ -681,6 +681,170 @@
                 grid-template-columns: 1fr;
             }
         }
+
+/*Estilos hoja de ruta*/
+
+        /* --- ESTILOS GENERALES Y RESETS --- */
+        :root {
+            /* Paleta de colores profesional */
+            --bg-color: #f7fafc; /* Gris muy claro para el fondo */
+            --primary-blue: #2c3e50; /* Azul marino para títulos */
+            --accent-blue: #3498db; /* Azul brillante para detalles */
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --muted-text: #666;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL DEL ITEM 5 --- */
+        .roadmap-item {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Título del Item */
+        .roadmap-item h2 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Subtítulo descriptivo */
+        .roadmap-item p.roadmap-description {
+            color: var(--muted-text);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        /* --- ESTRUCTURA DEL SCROLL HORIZONTAL --- */
+        /* Contenedor de la vista (viewport) */
+        .timeline-scroll-container {
+            width: 100%;
+            overflow-x: auto; /* Activa el scroll horizontal */
+            overflow-y: hidden; /* Oculta el vertical */
+            cursor: grab; /* Indica que se puede arrastrar */
+            scrollbar-width: thin; /* Estilo de scrollbar para Firefox */
+            scrollbar-color: var(--accent-blue) #e0e0e0; /* Colores de scrollbar para Firefox */
+        }
+
+        .timeline-scroll-container:active {
+            cursor: grabbing; /* Cambia el cursor al arrastrar */
+        }
+
+        /* Contenedor interno que se estira para contener las tarjetas */
+        .timeline-wrapper {
+            display: flex; /* Tarjetas en fila horizontal */
+            gap: 20px; /* Espacio entre fases */
+            padding-bottom: 20px; /* Espacio para el scrollbar */
+            width: fit-content; /* El ancho lo definen las tarjetas */
+        }
+
+        /* --- ESTILOS DE LAS TARJETAS (FASES) --- */
+        .phase-card {
+            background-color: var(--card-bg);
+            border: 1px solid #eaeaea;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            width: 280px; /* Ancho fijo para cada fase */
+            flex-shrink: 0; /* Evita que las tarjetas se encojan */
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-blue);
+        }
+
+        /* Estilo para el indicador de la Fase (Ej: "Fase 1") */
+        .phase-card .phase-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: var(--accent-blue);
+            background-color: #e3f2fd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo especial para la Fase Zero */
+        .phase-card.phase-zero .phase-label {
+            color: #d35400; /* Color naranja para destacar */
+            background-color: #fbeee6;
+        }
+
+        /* Contenido de la Fase */
+        .phase-card .phase-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* --- DECORACIÓN VISUAL DE LA LÍNEA DE TIEMPO (FLECHA) --- */
+        /* Decoración en la Fase Zero */
+        .phase-card.phase-zero::after {
+            content: "➔"; /* Flecha para indicar el flujo */
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #d35400;
+        }
+
+        /* Decoración en las Fases 1 a 3 */
+        .phase-card:not(.phase-zero):not(.phase-4)::after {
+            content: "➔";
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+        }
+
+        /* --- ESTILOS DEL SCROLLBAR (PARA CHROME/SAFARI/EDGE) --- */
+        .timeline-scroll-container::-webkit-scrollbar {
+            height: 8px; /* Altura del scrollbar horizontal */
+        }
+
+        .timeline-scroll-container::-webkit-scrollbar-track {
+            background: #e0e0e0; /* Color del fondo de la pista */
+            border-radius: 4px;
+        }
+
+        .timeline-scroll-container::-webkit-scrollbar-thumb {
+            background: var(--accent-blue); /* Color del "pulgar" */
+            border-radius: 4px;
+        }
+
+        .timeline-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-blue); /* Color del pulgar al pasar el mouse */
+        }
         
     </style>
 </head>
@@ -953,6 +1117,82 @@
                 // Cambiar a Rubén parado
                 character.style.backgroundImage = `url('${avatarParado}')`;
             }, 300);
+        });
+    </script>
+
+    <div class="roadmap-item">
+        <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="roadmap-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            Item 5: La Hoja de Ruta
+        </h2>
+        <p class="roadmap-description">Tu plan de acción estratégico si te otorgan el puesto, diseñado en un flujo temporal horizontal intuitivo.</p>
+
+        <!-- CONTENEDOR DE SCROLL HORIZONTAL (VIEWPORT) -->
+        <div class="timeline-scroll-container" id="timelineScroll">
+            <!-- CONTENEDOR INTERNO DE FASES -->
+            <div class="timeline-wrapper">
+
+                <!-- FASE ZERO (Liderazgo) -->
+                <div class="phase-card phase-zero">
+                    <span class="phase-label">Fase zero</span>
+                    <div class="phase-text">Liderazgo y creación de nuevos activos digitales.</div>
+                </div>
+
+                <!-- FASE 1 (Diagnóstico) -->
+                <div class="phase-card phase-1">
+                    <span class="phase-label">Fase 1</span>
+                    <div class="phase-text">Diagnóstico, alineación con dirección y toma de contacto con el servicio.</div>
+                </div>
+
+                <!-- FASE 2 (Conocimiento Disponible) -->
+                <div class="phase-card phase-2">
+                    <span class="phase-label">Fase 2</span>
+                    <div class="phase-text">Identificación de conocimiento disponible dentro del área de especialización de administraciones públicas.</div>
+                </div>
+
+                <!-- FASE 3 (Conocimiento Necesario) -->
+                <div class="phase-card phase-3">
+                    <span class="phase-label">Fase 3</span>
+                    <div class="phase-text">Identificación de conocimiento necesario para el desarrollo de las funciones del área de especialización.</div>
+                </div>
+
+                <!-- FASE 4 (Adquisición) -->
+                <div class="phase-card phase-4">
+                    <span class="phase-label">Fase 4</span>
+                    <div class="phase-text">Adquisición del conocimiento ausente.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT OPCIONAL: PERMITE ARRRASTRAR CON EL RATÓN PARA SCROLLEAR (MEJORA LA UX EN ESCRITORIO) -->
+    <script>
+        const slider = document.getElementById('timelineScroll');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('grabbing');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('grabbing');
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('grabbing');
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1.5; // multiplicador de velocidad de scroll
+            slider.scrollLeft = scrollLeft - walk;
         });
     </script>
 </body>
