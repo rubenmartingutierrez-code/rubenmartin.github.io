@@ -1082,44 +1082,6 @@
         <div class="infographic-footer">
             ESTRATEGIA, OPERACIONES Y TECNOLOGÍA EN SINERGIA
         </div>
-
-    </div>
-        </div>
-    </div>
-
-    <script>
-        const scrollContainer = document.getElementById('scrollContainer');
-        const character = document.getElementById('character');
-
-        // GIFs de Rubén
-        const avatarAndando = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avatarwalking.gif';
-        const avatarParado = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avataridle.gif';
-
-        // Inicialmente mostrar Rubén parado
-        character.style.backgroundImage = `url('${avatarParado}')`;
-
-        let scrollTimeout;
-
-        scrollContainer.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            scrollContainer.scrollLeft += e.deltaY;
-        });
-
-        scrollContainer.addEventListener('scroll', () => {
-            // Cambiar a Rubén corriendo
-            character.style.backgroundImage = `url('${avatarAndando}')`;
-
-            // Limpiar el timeout anterior
-            clearTimeout(scrollTimeout);
-
-            // Detener la animación después de 600ms sin scroll
-            scrollTimeout = setTimeout(() => {
-                // Cambiar a Rubén parado
-                character.style.backgroundImage = `url('${avatarParado}')`;
-            }, 300);
-        });
-    </script>
-
     <div class="roadmap-item">
         <h2>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="roadmap-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -1165,6 +1127,44 @@
             </div>
         </div>
     </div>
+    </div>
+        </div>
+    </div>
+
+    <script>
+        const scrollContainer = document.getElementById('scrollContainer');
+        const character = document.getElementById('character');
+
+        // GIFs de Rubén
+        const avatarAndando = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avatarwalking.gif';
+        const avatarParado = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avataridle.gif';
+
+        // Inicialmente mostrar Rubén parado
+        character.style.backgroundImage = `url('${avatarParado}')`;
+
+        let scrollTimeout;
+
+        scrollContainer.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            scrollContainer.scrollLeft += e.deltaY;
+        });
+
+        scrollContainer.addEventListener('scroll', () => {
+            // Cambiar a Rubén corriendo
+            character.style.backgroundImage = `url('${avatarAndando}')`;
+
+            // Limpiar el timeout anterior
+            clearTimeout(scrollTimeout);
+
+            // Detener la animación después de 600ms sin scroll
+            scrollTimeout = setTimeout(() => {
+                // Cambiar a Rubén parado
+                character.style.backgroundImage = `url('${avatarParado}')`;
+            }, 300);
+        });
+    </script>
+
+
 
     <!-- SCRIPT OPCIONAL: PERMITE ARRRASTRAR CON EL RATÓN PARA SCROLLEAR (MEJORA LA UX EN ESCRITORIO) -->
     <script>
