@@ -406,6 +406,281 @@
             }
         }
 
+
+        :root {
+            --primary-blue: #1b3a5d; /* Azul marino corporativo */
+            --accent-orange: #f38a3d; /* Naranja de acento */
+            --accent-teal: #3ab4a8; /* Teal de acento */
+            --bg-light: #f4f7f6; /* Fondo gris muy claro */
+            --text-dark: #333333;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Tipografía profesional */
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-dark);
+            box-sizing: border-box;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL DE LA INFOGRAFÍA --- */
+        .stakeholder-infographic {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        /* --- TÍTULO PRINCIPAL --- */
+        .infographic-title {
+            text-align: center;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            font-weight: 700;
+            font-size: 2em;
+        }
+
+        /* --- LOGOTIPOS Y CABECERA --- */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .ctti-logo {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: var(--primary-blue);
+        }
+
+        .your-logo {
+            font-size: 1em;
+            color: #777;
+            font-style: italic;
+        }
+
+        /* --- ESTRUCTURA DE LOS NIVELES --- */
+        .level-section {
+            margin-bottom: 50px;
+        }
+
+        .level-header {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transform: translateY(1px); /* Para solaparse con el contenido */
+            z-index: 2;
+            position: relative;
+        }
+
+        .level-content {
+            border: 2px solid var(--primary-blue);
+            border-radius: 0 12px 12px 12px;
+            padding: 30px;
+            background-color: var(--bg-light);
+            z-index: 1;
+            position: relative;
+        }
+
+        /* --- ESTILOS ESPECÍFICOS: MENSUAL --- */
+        .level-monthly {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .director-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            width: 48%; /* Dos columnas en pantallas grandes */
+            min-width: 300px;
+            box-shadow: var(--shadow);
+            border: 1px solid #e0e0e0;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .director-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .director-title {
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .director-dept {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .tag-info {
+            display: inline-block;
+            background-color: #e0e0e0;
+            color: var(--text-dark);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        /* --- ESTILOS ESPECÍFICOS: SEMANAL --- */
+        .level-weekly-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            border-top: 5px solid var(--accent-orange);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-top-width: 10px;
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .service-header i {
+            color: var(--accent-orange);
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .service-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 1.1em;
+        }
+
+        .service-name {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* --- ESTILOS ESPECÍFICOS: TIC (CTTI) --- */
+        .level-tic {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -20px; /* Integrado con el nivel semanal */
+        }
+
+        .level-tic .level-header {
+            background-color: var(--accent-teal);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .tic-content {
+            border: 2px solid var(--accent-teal);
+            border-radius: 12px;
+            padding: 25px;
+            background-color: var(--bg-light);
+            display: flex;
+            gap: 20px;
+            width: fit-content;
+        }
+
+        .tic-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 15px;
+            width: 300px;
+            box-shadow: var(--shadow);
+        }
+
+        .tic-title {
+            color: var(--accent-teal);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tic-desc {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* --- PIE DE PÁGINA --- */
+        .infographic-footer {
+            margin-top: 50px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #777;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 900px) {
+            .stakeholder-infographic {
+                padding: 20px;
+            }
+            .infographic-title {
+                font-size: 1.5em;
+            }
+            .level-tic {
+                justify-content: center;
+                margin-top: 0;
+            }
+            .tic-content {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+            }
+            .tic-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .director-card {
+                width: 100%;
+            }
+            .level-weekly-grid {
+                grid-template-columns: 1fr;
+            }
+        }
         
     </style>
 </head>
@@ -530,10 +805,121 @@
 
             
             <div class="scroll-item">Item 4</div>
-            <div class="scroll-item">Item 5</div>
-            <div class="scroll-item">Item 6</div>
-            <div class="scroll-item">Item 7</div>
-            <div class="scroll-item">Item 8</div>
+
+            <div class="stakeholder-infographic">
+        
+        <div class="header-section">
+            <div class="ctti-logo">CTTI</div>
+            <div class="your-logo">[TU LOGO DE CANDIDATURA]</div>
+        </div>
+
+        <h1 class="infographic-title">Mis Principales Interlocutores Dentro Del Cliente</h1>
+
+        <div class="level-section">
+            <div class="level-header">Nivel de Seguimiento Mensual</div>
+            <div class="level-content level-monthly">
+                
+                <div class="director-card">
+                    <div class="director-title">DIRECTORA</div>
+                    <p class="director-dept">Departament d'Agricultura, Ramaderia, Pesca i Alimentació</p>
+                    <div class="tag-info"><i class="fas fa-calendar-alt"></i> Seguimiento Mensual</div>
+                </div>
+
+                <div class="director-card">
+                    <div class="director-title">SUBDIRECTORA</div>
+                    <p class="director-dept">Departament d'Agricultura, Ramaderia, Pesca i Alimentació</p>
+                    <div class="tag-info"><i class="fas fa-calendar-alt"></i> Seguimiento Mensual</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="level-section">
+            <div class="level-header">Nivel de Seguimiento Semanal</div>
+            <div class="level-content level-weekly-grid">
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <i class="fas fa-tractor"></i>
+                        <div>
+                            <div class="service-title">DIRECTOR SOA</div>
+                            <div class="service-name">Servei d'Ordenació Agrícola</div>
+                        </div>
+                    </div>
+                    <div class="tag-info"><i class="fas fa-clock"></i> Seguimiento Semanal</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <i class="fas fa-euro-sign"></i>
+                        <div>
+                            <div class="service-title">DIRECTOR SCIP</div>
+                            <div class="service-name">Servei de Control Integrat i Pagaments</div>
+                        </div>
+                    </div>
+                    <div class="tag-info"><i class="fas fa-clock"></i> Seguimiento Semanal</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <div class="service-title">DIRECTOR SERMA</div>
+                            <div class="service-name">Servei de regulació de mercats agroalimentaris</div>
+                        </div>
+                    </div>
+                    <div class="tag-info"><i class="fas fa-clock"></i> Seguimiento Semanal</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <i class="fas fa-wine-glass-alt"></i>
+                        <div>
+                            <div class="service-title">DIRECTOR INCAVI</div>
+                            <div class="service-name">Institut catalá de la vinya i el vi</div>
+                        </div>
+                    </div>
+                    <div class="tag-info"><i class="fas fa-clock"></i> Seguimiento Semanal</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <div class="service-title">DIRECTOR SCOQA</div>
+                            <div class="service-name">Servei de control oficial de la qualitat agroalimentària</div>
+                        </div>
+                    </div>
+                    <div class="tag-info"><i class="fas fa-clock"></i> Seguimiento Semanal</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="level-section level-tic">
+            <div class="level-tic-container">
+                <div class="level-header">Seguimiento de Proyecto Cliente - TIC</div>
+                <div class="tic-content">
+                    
+                    <div class="tic-card">
+                        <div class="tic-title">DIRECTOR DEL ÁREA TIC DE CTTI</div>
+                        <p class="tic-desc">Centre de Telecomunicacions i Tecnologies de la Informació</p>
+                    </div>
+
+                    <div class="tic-card">
+                        <div class="tic-title">GESTOR SOLUCIONES ÁREA TIC DE CTTI</div>
+                        <p class="tic-desc">Responsable técnico de implementación y sistemas</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="infographic-footer">
+            ESTRATEGIA, OPERACIONES Y TECNOLOGÍA EN SINERGIA
+        </div>
+
+    </div>
         </div>
     </div>
 
