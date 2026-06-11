@@ -1108,5 +1108,38 @@
 
         </div>
     </div>
+
+    <script>
+        const scrollContainer = document.getElementById('scrollContainer');
+        const character = document.getElementById('character');
+
+        // GIFs de Rubén
+        const avatarAndando = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avatarwalking.gif';
+        const avatarParado = 'https://raw.githubusercontent.com/rubenmartingutierrez-code/rubenmartin.github.io/main/avataridle.gif';
+
+        // Inicialmente mostrar Rubén parado
+        character.style.backgroundImage = `url('${avatarParado}')`;
+
+        let scrollTimeout;
+
+        scrollContainer.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            scrollContainer.scrollLeft += e.deltaY;
+        });
+
+        scrollContainer.addEventListener('scroll', () => {
+            // Cambiar a Rubén corriendo
+            character.style.backgroundImage = `url('${avatarAndando}')`;
+
+            // Limpiar el timeout anterior
+            clearTimeout(scrollTimeout);
+
+            // Detener la animación después de 600ms sin scroll
+            scrollTimeout = setTimeout(() => {
+                // Cambiar a Rubén parado
+                character.style.backgroundImage = `url('${avatarParado}')`;
+            }, 300);
+        });
+    </script>
 </body>
 </html>
