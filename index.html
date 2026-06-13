@@ -605,41 +605,42 @@
 
     // --- NUEVO: Manejo del scroll con las flechas del teclado ---
     window.addEventListener('keydown', (e) => {
-        // Cantidad de píxeles que se moverá en cada pulsación
-        const desplazamiento = 80; 
+		const anchoPantalla = window.innerWidth; 
 
-        if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            scrollContainer.scrollBy({
-                left: desplazamiento,
-                behavior: 'smooth' // Movimiento fluido que acompaña bien la animación
-            });
-        } else if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            scrollContainer.scrollBy({
-                left: -desplazamiento,
-                behavior: 'smooth'
-            });
-        }
+	    if (e.key === 'ArrowRight') {
+	        e.preventDefault();
+	        scrollContainer.scrollBy({
+	            left: anchoPantalla,
+	            behavior: 'smooth' 
+	        });
+	    } else if (e.key === 'ArrowLeft') {
+	        e.preventDefault();
+	        scrollContainer.scrollBy({
+	            left: -anchoPantalla,
+	            behavior: 'smooth'
+	        });
+	    }
     });
     // -------------------------------------------------------------
 
     // Manejo de la animación y dirección del personaje
     scrollContainer.addEventListener('scroll', () => {
         const currentScrollLeft = scrollContainer.scrollLeft;
+        const diferencia = currentScrollLeft - lastScrollLeft;
 
-        // 1. Identificar la dirección y voltear el GIF
-        if (currentScrollLeft > lastScrollLeft) {
-            // Avanza hacia la derecha -> Orientación normal
-            character.style.transform = 'translateX(-50%) scaleX(1)';
-        } else if (currentScrollLeft < lastScrollLeft) {
-            // Retrocede hacia la izquierda -> Efecto espejo
-            character.style.transform = 'translateX(-50%) scaleX(-1)';
+        // 1. Identificar la dirección y voltear el GIF (con umbral para evitar parpadeos)
+        if (Math.abs(diferencia) > 2) {
+            if (diferencia > 0) {
+                // Avanza hacia la derecha -> Orientación normal
+                character.style.transform = 'translateX(-50%) scaleX(1)';
+            } else {
+                // Retrocede hacia la izquierda -> Efecto espejo
+                character.style.transform = 'translateX(-50%) scaleX(-1)';
+            }
+            // Solo actualizamos la posición de referencia si el movimiento supera el umbral
+            lastScrollLeft = currentScrollLeft;
         }
         
-        // Actualizamos la posición de referencia para el próximo movimiento
-        lastScrollLeft = currentScrollLeft;
-
         // 2. Control del estado de movimiento (Evita parpadeos al recargar el GIF)
         if (!isScrolling) {
             character.style.backgroundImage = `url('${avatarAndando}')`;
@@ -655,6 +656,6 @@
             isScrolling = false;
         }, 150);
     });
-</script>
+   </script>
 </body>
 </html>
