@@ -154,16 +154,17 @@
             font-weight: 400;
         }
 
-        /* --- ITEM 2: TRAYECTORIA --- */
+        /* --- ITEM 2: TRAYECTORIA (CORREGIDO) --- */
         .timeline-container {
             display: flex;
+            flex-direction: row;
             gap: 20px;
             overflow-x: auto;
-            padding-bottom: 10px;
-			display: grid;
+            padding-bottom: 15px;
+            width: 100%;
         }
         .timeline-card {
-            flex: 0 0 300px;
+            flex: 0 0 300px; /* Evita que las tarjetas se encojan */
             display: flex;
             flex-direction: column;
         }
@@ -612,7 +613,7 @@
 
                         <div class="base-card phase-card">
                             <span class="phase-label">Fase 4</span>
-                            <div class="phase-text">Adquisición del conocimiento ausente y formación continua.</div>
+                            <div class="phase-text">Adquisición del conocimiento ausente and formación continua.</div>
                         </div>
                     </div>
                 </div>
@@ -685,86 +686,7 @@
 
     let scrollTimeout;
     let isScrolling = false;
-    let lastScrollLeft = scrollContainer.scrollLeft; // Guardamos la posición inicial
-
-    // Manejo del scroll con la rueda del ratón (corregido para navegadores modernos)
-    scrollContainer.addEventListener('wheel', (e) => {
-        if (Math.abs(e.deltaY) > 0) {
-            e.preventDefault();
-            scrollContainer.scrollLeft += e.deltaY; 
-        }
-    }, { passive: false });
-
-    // --- NUEVO: Manejo del scroll con las flechas del teclado ---
-    window.addEventListener('keydown', (e) => {
-		const anchoPantalla = window.innerWidth; 
-
-	    if (e.key === 'ArrowRight') {
-	        e.preventDefault();
-	        scrollContainer.scrollBy({
-	            left: anchoPantalla,
-	            behavior: 'smooth' 
-	        });
-	    } else if (e.key === 'ArrowLeft') {
-	        e.preventDefault();
-	        scrollContainer.scrollBy({
-	            left: -anchoPantalla,
-	            behavior: 'smooth'
-	        });
-	    }
-    });
-    // -------------------------------------------------------------
-
-    // Manejo de la animación y dirección del personaje
-    scrollContainer.addEventListener('scroll', () => {
-        const currentScrollLeft = scrollContainer.scrollLeft;
-        const diferencia = currentScrollLeft - lastScrollLeft;
-
-        // 1. Identificar la dirección y voltear el GIF (con umbral para evitar parpadeos)
-        if (Math.abs(diferencia) > 2) {
-            if (diferencia > 0) {
-                // Avanza hacia la derecha -> Orientación normal
-                character.style.transform = 'translateX(-50%) scaleX(1)';
-            } else {
-                // Retrocede hacia la izquierda -> Efecto espejo
-                character.style.transform = 'translateX(-50%) scaleX(-1)';
-            }
-            // Solo actualizamos la posición de referencia si el movimiento supera el umbral
-            lastScrollLeft = currentScrollLeft;
-        }
-        
-        // 2. Control del estado de movimiento (Evita parpadeos al recargar el GIF)
-        if (!isScrolling) {
-            character.style.backgroundImage = `url('${avatarAndando}')`;
-            isScrolling = true;
-        }
-
-        // Limpiar el timeout anterior
-        clearTimeout(scrollTimeout);
-
-        // Detener la animación tras 150ms de inactividad
-        scrollTimeout = setTimeout(() => {
-            character.style.backgroundImage = `url('${avatarParado}')`;
-            isScrolling = false;
-        }, 150);
-    });
-	function toggleCard(button) {
-	    // Buscamos el contenedor expandible que está justo antes del botón pulsado
-	    const content = button.previousElementSibling;
-	    
-	    // Alternamos la clase para abrir/cerrar el texto
-	    content.classList.toggle('open');
-	    
-	    // Alternamos la clase en el botón para que la flecha gire
-	    button.classList.toggle('active');
-	    
-	    // Cambiamos el texto del botón según corresponda
-	    if (content.classList.contains('open')) {
-	        button.innerHTML = 'Ver menos <i class="fa-solid fa-chevron-down"></i>';
-	    } else {
-	        button.innerHTML = 'Ver más <i class="fa-solid fa-chevron-down"></i>';
-	    }
-	}
-   </script>
+    let lastScrollLeft = scrollContainer.scrollLeft;
+</script>
 </body>
 </html>
