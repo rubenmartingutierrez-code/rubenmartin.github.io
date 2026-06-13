@@ -602,6 +602,27 @@
         }
     }, { passive: false });
 
+    // --- NUEVO: Manejo del scroll con las flechas del teclado ---
+    window.addEventListener('keydown', (e) => {
+        // Cantidad de píxeles que se moverá en cada pulsación
+        const desplazamiento = 80; 
+
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            scrollContainer.scrollBy({
+                left: desplazamiento,
+                behavior: 'smooth' // Movimiento fluido que acompaña bien la animación
+            });
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            scrollContainer.scrollBy({
+                left: -desplazamiento,
+                behavior: 'smooth'
+            });
+        }
+    });
+    // -------------------------------------------------------------
+
     // Manejo de la animación y dirección del personaje
     scrollContainer.addEventListener('scroll', () => {
         const currentScrollLeft = scrollContainer.scrollLeft;
