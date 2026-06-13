@@ -156,17 +156,19 @@
 
         /* --- ITEM 2: TRAYECTORIA (CORREGIDO) --- */
         .timeline-container {
-            display: flex;
+			display: flex;
             flex-direction: row;
+            align-items: stretch; /* Alinea arriba y estira todas las tarjetas a la misma altura */
             gap: 20px;
             overflow-x: auto;
-            padding-bottom: 15px;
+            padding-bottom: 25px; /* Espacio de seguridad para la barra de scroll */
             width: 100%;
         }
         .timeline-card {
-            flex: 0 0 300px; /* Evita que las tarjetas se encojan */
+			flex: 0 0 300px; /* Evita que las tarjetas se encojan horizontalmente */
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
         }
         .timeline-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
         .timeline-card h4 { font-size: 1rem; font-weight: 500; color: var(--secondary); }
