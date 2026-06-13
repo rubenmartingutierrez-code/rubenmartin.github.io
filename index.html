@@ -154,16 +154,19 @@
             font-weight: 400;
         }
 
-        /* --- ITEM 2: TRAYECTORIA --- */
+        /* --- ITEM 2: TRAYECTORIA (CORREGIDO A HORIZONTAL) --- */
         .timeline-container {
             display: flex;
+            flex-direction: row;
             gap: 20px;
             overflow-x: auto;
-            padding-bottom: 10px;
-			display: grid;
+            padding-bottom: 15px;
+            width: 100%;
         }
+        
+        /* Asegura que las tarjetas mantengan su ancho en la fila horizontal */
         .timeline-card {
-            flex: 0 0 300px;
+            flex: 0 0 280px; 
             display: flex;
             flex-direction: column;
         }
@@ -259,6 +262,8 @@
             .scroll-item { padding: 20px; }
             .content-wrapper { padding: 20px; }
             .level-content { flex-direction: column; }
+            .timeline-container { flex-direction: column; }
+            .timeline-card { flex: 1 1 auto; }
         }
 
 		/* --- ESTILOS PARA TARJETAS DESPLEGABLES --- */
@@ -332,7 +337,7 @@
                             <span class="client">Gobierno de Aragón</span>
                             <div class="divider"></div>
                             <p class="impact-title">Impacto</p>
-                            <p class="impact-text">Dirección integral del desarrollo e implantación de un sistema crítico para la administración autonómica, asegurando el cumplimiento de pliegos técnicos y plazos institucionales.</p>
+                            <p class="impact-text">Dirección integral del desarrollo e implantación de un system crítico para la administración autonómica, asegurando el cumplimiento de pliegos técnicos y plazos institucionales.</p>
                         </div>
 
                         <div class="base-card timeline-card">
@@ -367,129 +372,130 @@
                     </div>
                 </div>
             </div>
-<!-- ITEM 3: ÉXITO OPERATIVO Y GESTIÓN DE EQUIPOS -->
-<div class="scroll-item">
-    <div class="content-wrapper">
-        <div class="section-header">
-            <h2><i class="fa-solid fa-list-check"></i> Éxito Operativo y Gestión de Equipos</h2>
-            <p>Dirección eficiente del día a día, garantizando la continuidad del negocio y el cumplimiento estricto de los niveles de servicio.</p>
-        </div>
 
-        <!-- Fila de KPIs Rápidos -->
-        <div style="display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap;">
-            <span class="badge" style="background: #e0f2fe; color: #0369a1; padding: 6px 14px;"><i class="fa-solid fa-chart-line"></i> &gt; 99.8% SLA Cumplido</span>
-            <span class="badge" style="background: #e0f2fe; color: #0369a1; padding: 6px 14px;"><i class="fa-solid fa-users-gear"></i> +15 Especialistas Coordinados</span>
-            <span class="badge" style="background: #e0f2fe; color: #0369a1; padding: 6px 14px;"><i class="fa-solid fa-shield-heart"></i> Mitigación Proactiva (ITIL)</span>
-        </div>
-
-        <!-- Grid de los 3 Pilares -->
-        <div class="tender-grid">
-            
-            <!-- Pilar 1 -->
-			<div class="base-card">
-			    <div class="tender-icon"><i class="fa-solid fa-people-roof"></i></div>
-			    <h3 class="tender-title">Coordinación de Equipos y Soporte</h3>
-			    <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Liderazgo de Personas</div>
-			    
-			    <!-- Contenedor colapsable para la descripción -->
-			    <div class="expandable-content">
-			        <p class="tender-desc">
-			            Dirección diaria de equipos de soporte técnico multicanal. Organización de flujos de trabajo basados en tableros Kanban y dinámicas de sincronización ágiles para optimizar el rendimiento y la motivación del equipo.
-			        </p>
+			<!-- ITEM 3: ÉXITO OPERATIVO Y GESTIÓN DE EQUIPOS -->
+			<div class="scroll-item">
+			    <div class="content-wrapper">
+			        <div class="section-header">
+			            <h2><i class="fa-solid fa-list-check"></i> Éxito Operativo y Gestión de Equipos</h2>
+			            <p>Dirección eficiente del día a día, garantizando la continuidad del negocio y el cumplimiento estricto de los niveles de servicio.</p>
+			        </div>
+			
+			        <!-- Fila de KPIs Rápidos -->
+			        <div style="display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap;">
+			            <span class="badge" style="background: #e0f2fe; color: #0369a1; padding: 6px 14px;"><i class="fa-solid fa-chart-line"></i> &gt; 99.8% SLA Cumplido</span>
+			            <span class="badge" style="background: #e0f2fe; color: #0369a1; padding: 6px 14px;"><i class="fa-solid fa-users-gear"></i> +15 Especialistas Coordinados</span>
+			            <span class="badge" style="background: #e0f2fe; color: #0369a1; padding: 6px 14px;"><i class="fa-solid fa-shield-heart"></i> Mitigación Proactiva (ITIL)</span>
+			        </div>
+			
+			        <!-- Grid de los 3 Pilares -->
+			        <div class="tender-grid">
+			            
+			            <!-- Pilar 1 -->
+						<div class="base-card">
+						    <div class="tender-icon"><i class="fa-solid fa-people-roof"></i></div>
+						    <h3 class="tender-title">Coordinación de Equipos y Soporte</h3>
+						    <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Liderazgo de Personas</div>
+						    
+						    <!-- Contenedor colapsable para la descripción -->
+						    <div class="expandable-content">
+						        <p class="tender-desc">
+						            Dirección diaria de equipos de soporte técnico multicanal. Organización de flujos de trabajo basados en tableros Kanban y dinámicas de sincronización ágiles para optimizar el rendimiento y la motivación del equipo.
+						        </p>
+						    </div>
+						    
+						    <!-- Botón para accionar el despliegue -->
+						    <button class="toggle-btn" onclick="toggleCard(this)">
+						        Ver más <i class="fa-solid fa-chevron-down"></i>
+						    </button>
+						</div>
+			
+			            <!-- Pilar 2 -->
+			            <div class="base-card">
+			                <div class="tender-icon"><i class="fa-solid fa-clock-check"></i></div>
+			                <h3 class="tender-title">Garantía y Cumplimiento de SLAs</h3>
+			                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Control y Calidad ITIL</div>
+			                <div class="expandable-content">
+						        <p class="tender-desc">
+			                    	Monitorización exhaustiva y explotación de métricas de servicio en tiempo real. Gestión estandarizada de incidencias y peticiones complejas, asegurando respuestas ágiles y alineadas con los pliegos del cliente.
+								</p>
+							</div>
+						 <!-- Botón para accionar el despliegue -->
+						    <button class="toggle-btn" onclick="toggleCard(this)">
+						        Ver más <i class="fa-solid fa-chevron-down"></i>
+						    </button>
+						</div>
+			            <!-- Pilar 3 -->
+			            <div class="base-card">
+			                <div class="tender-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+			                <h3 class="tender-title">Mitigación Preventiva del Riesgo</h3>
+			                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Continuidad de Negocio</div>
+			                <div class="expandable-content">
+								<p class="tender-desc">
+									Diseño de matrices de escalado críticas y comités de crisis. Foco prioritario en la Gestión de Problemas para identificar causas raíz y ejecutar planes de mejora continua que eliminen riesgos operativos antes del impacto.
+								</p>
+							</div>
+							 <button class="toggle-btn" onclick="toggleCard(this)">
+						        Ver más <i class="fa-solid fa-chevron-down"></i>
+						    </button>
+			            </div>
+			
+			        </div>
 			    </div>
-			    
-			    <!-- Botón para accionar el despliegue -->
-			    <button class="toggle-btn" onclick="toggleCard(this)">
-			        Ver más <i class="fa-solid fa-chevron-down"></i>
-			    </button>
 			</div>
-
-            <!-- Pilar 2 -->
-            <div class="base-card">
-                <div class="tender-icon"><i class="fa-solid fa-clock-check"></i></div>
-                <h3 class="tender-title">Garantía y Cumplimiento de SLAs</h3>
-                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Control y Calidad ITIL</div>
-                <div class="expandable-content">
-			        <p class="tender-desc">
-                    	Monitorización exhaustiva y explotación de métricas de servicio en tiempo real. Gestión estandarizada de incidencias y peticiones complejas, asegurando respuestas ágiles y alineadas con los pliegos del cliente.
-					</p>
-				</div>
-			 <!-- Botón para accionar el despliegue -->
-			    <button class="toggle-btn" onclick="toggleCard(this)">
-			        Ver más <i class="fa-solid fa-chevron-down"></i>
-			    </button>
-			</div>
-            <!-- Pilar 3 -->
-            <div class="base-card">
-                <div class="tender-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                <h3 class="tender-title">Mitigación Preventiva del Riesgo</h3>
-                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Continuidad de Negocio</div>
-                <div class="expandable-content">
-					<p class="tender-desc">
-						Diseño de matrices de escalado críticas y comités de crisis. Foco prioritario en la Gestión de Problemas para identificar causas raíz y ejecutar planes de mejora continua que eliminen riesgos operativos antes del impacto.
-					</p>
-				</div>
-				 <button class="toggle-btn" onclick="toggleCard(this)">
-			        Ver más <i class="fa-solid fa-chevron-down"></i>
-			    </button>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 			<div class="scroll-item">
-    <div class="content-wrapper">
-        <div class="section-header">
-            <h2><i class="fa-solid fa-calculator"></i> Eficiencia Financiera y Transformación</h2>
-            <p>Gobernanza económica de cuentas y estrategia de optimización de costes y procesos.</p>
-        </div>
-
-        <div class="tender-grid">
-            <div class="base-card">
-                <div class="tender-icon"><i class="fa-solid fa-coins"></i></div>
-                <h3 class="tender-title">Control de P&L y Viabilidad</h3>
-                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Gestión Presupuestaria</div>
-                <div class="expandable-content">
-					<p class="tender-desc">
-						Responsable de la rentabilidad financiera del servicio. Supervisión y control de costes operativos (OPEX), desviaciones presupuestarias y dimensionamiento eficiente de recursos para maximizar el margen de la cuenta.
-					</p>
-				</div>
-				<button class="toggle-btn" onclick="toggleCard(this)">
-			        Ver más <i class="fa-solid fa-chevron-down"></i>
-			    </button>
-            </div>
-
-            <div class="base-card">
-                <div class="tender-icon"><i class="fa-solid fa-robot"></i></div>
-                <h3 class="tender-title">Automatización y Eficiencia</h3>
-                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Optimización de Procesos</div>
-				<div class="expandable-content">
-					<p class="tender-desc">
-						Liderazgo en iniciativas de transformación interna. Implementación de automatizaciones en tareas recurrentes de soporte y monitorización, logrando reducir los tiempos de operación manual y reasignando el talento a tareas de valor.
-					</p>
-				</div>
-				<button class="toggle-btn" onclick="toggleCard(this)">
-			        Ver más <i class="fa-solid fa-chevron-down"></i>
-			    </button>
-            </div>
-
-            <div class="base-card">
-                <div class="tender-icon"><i class="fa-solid fa-handshake-angle"></i></div>
-                <h3 class="tender-title">Desarrollo de Cuenta (Up-selling)</h3>
-                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Alianza Estratégica</div>
-				<div class="expandable-content">
-					<p class="tender-desc">
-						Detección proactiva de nuevas necesidades tecnológicas en el cliente actual. Elaboración de propuestas de mejora fuera de pliego que expanden el alcance del servicio y generan nuevas líneas de negocio.
-					</p>
-				</div>
-				<button class="toggle-btn" onclick="toggleCard(this)">
-			        Ver más <i class="fa-solid fa-chevron-down"></i>
-			    </button>
-            </div>
-        </div>
-    </div>
-</div>
+			    <div class="content-wrapper">
+			        <div class="section-header">
+			            <h2><i class="fa-solid fa-calculator"></i> Eficiencia Financiera y Transformación</h2>
+			            <p>Gobernanza económica de cuentas y estrategia de optimización de costes y procesos.</p>
+			        </div>
+			
+			        <div class="tender-grid">
+			            <div class="base-card">
+			                <div class="tender-icon"><i class="fa-solid fa-coins"></i></div>
+			                <h3 class="tender-title">Control de P&L y Viabilidad</h3>
+			                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Gestión Presupuestaria</div>
+			                <div class="expandable-content">
+								<p class="tender-desc">
+									Responsable de la rentabilidad financiera del servicio. Supervisión y control de costes operativos (OPEX), desviaciones presupuestarias y dimensionamiento eficiente de recursos para maximizar el margen de la cuenta.
+								</p>
+							</div>
+							<button class="toggle-btn" onclick="toggleCard(this)">
+						        Ver más <i class="fa-solid fa-chevron-down"></i>
+						    </button>
+			            </div>
+			
+			            <div class="base-card">
+			                <div class="tender-icon"><i class="fa-solid fa-robot"></i></div>
+			                <h3 class="tender-title">Automatización y Eficiencia</h3>
+			                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Optimización de Procesos</div>
+							<div class="expandable-content">
+								<p class="tender-desc">
+									Liderazgo en iniciativas de transformación interna. Implementación de automatizaciones en tareas recurrentes de soporte y monitorización, logrando reducir los tiempos de operación manual y reasignando el talento a tareas de valor.
+								</p>
+							</div>
+							<button class="toggle-btn" onclick="toggleCard(this)">
+						        Ver más <i class="fa-solid fa-chevron-down"></i>
+						    </button>
+			            </div>
+			
+			            <div class="base-card">
+			                <div class="tender-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+			                <h3 class="tender-title">Desarrollo de Cuenta (Up-selling)</h3>
+			                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Alianza Estratégica</div>
+							<div class="expandable-content">
+								<p class="tender-desc">
+									Detección proactiva de nuevas necesidades tecnológicas en el cliente actual. Elaboración de propuestas de mejora fuera de pliego que expanden el alcance del servicio y generan nuevas líneas de negocio.
+								</p>
+							</div>
+							<button class="toggle-btn" onclick="toggleCard(this)">
+						        Ver más <i class="fa-solid fa-chevron-down"></i>
+						    </button>
+			            </div>
+			        </div>
+			    </div>
+			</div>
 			
             <div class="scroll-item">
                 <div class="content-wrapper">
@@ -504,7 +510,7 @@
                             <h3 class="tender-title">Oferta Completa: Registro de Cooperativas</h3>
                             <div class="tender-client"><i class="fa-solid fa-building"></i> Gobierno de Aragón</div>
 							<div class="expandable-content">
-								<p class="tender-desc">Liderazgo en la confección y defensa técnica de la oferta que resultó en la adjudicación estratégica del proyecto, garantizando el cumplimiento normativo.</p>
+								<p class="tender-desc">Liderazgo en la confección y defensa técnica de la oferta que resultó en la adjudicación estratégica del proyecto, generando el cumplimiento normativo.</p>
 							</div>
 							<button class="toggle-btn" onclick="toggleCard(this)">
 								Ver más <i class="fa-solid fa-chevron-down"></i>
@@ -619,56 +625,56 @@
             </div>
 
 			<div class="scroll-item">
-    <div class="content-wrapper">
-        <div class="section-header">
-            <h2><i class="fa-solid fa-id-card"></i> Conectemos</h2>
-            <p>Estrategia, liderazgo y entrega de valor orientada a los objetivos de Grupo Oesía.</p>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-            
-            <!-- Bloque de Propuesta de Valor directiva -->
-            <div>
-                <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--primary);">Mi Enfoque Ejecutivo</h3>
-                <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; color: var(--secondary);">
-                    <li><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 8px;"></i> Orientación a resultados y cumplimiento de objetivos de negocio.</li>
-                    <li><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 8px;"></i> Comunicación transparente y gestión de expectativas a nivel C-Level.</li>
-                    <li><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 8px;"></i> Liderazgo empático enfocado al desarrollo y retención del talento.</li>
-                </ul>
-            </div>
-
-            <!-- Bloque de Datos de Contacto directos -->
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                <h3 style="font-size: 1.2rem; margin-bottom: 5px; color: var(--primary);">Datos de Contacto</h3>
-                
-                <a href="mailto:rubenmartingutierrez@gmail.com" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--secondary);" class="base-card" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
-                    <i class="fa-solid fa-envelope" style="font-size: 1.2rem; color: var(--accent);"></i>
-                    <div>
-                        <strong style="display: block; font-size: 0.85rem; color: var(--primary);">Correo Electrónico</strong>
-                        <span>rubenmartingutierrez@gmail.com</span>
-                    </div>
-                </a>
-
-                <a href="https://linkedin.com/in/ruben-martin-gutierrez" target="_blank" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--secondary);" class="base-card" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
-                    <i class="fa-brands fa-linkedin" style="font-size: 1.2rem; color: var(--accent);"></i>
-                    <div>
-                        <strong style="display: block; font-size: 0.85rem; color: var(--primary);">LinkedIn</strong>
-                        <span>linkedin.com/in/ruben-martin-gutierrez</span>
-                    </div>
-                </a>
-
-				<div style="display: flex; align-items: center; gap: 12px; padding: 24px; background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius);">
-				    <i class="fa-solid fa-mobile-screen-button" style="font-size: 1.2rem; color: var(--secondary);"></i>
-				    <div>
-				        <strong style="display: block; font-size: 0.85rem; color: var(--primary);">Teléfono</strong>
-				        <span>+34 679 899327</span>
-				    </div>
-				</div>
-
-            </div>
-        </div>
-    </div>
-</div>
+			    <div class="content-wrapper">
+			        <div class="section-header">
+			            <h2><i class="fa-solid fa-id-card"></i> Conectemos</h2>
+			            <p>Estrategia, liderazgo y entrega de valor orientada a los objetivos de Grupo Oesía.</p>
+			        </div>
+			
+			        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+			            
+			            <!-- Bloque de Propuesta de Valor directiva -->
+			            <div>
+			                <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--primary);">Mi Enfoque Ejecutivo</h3>
+			                <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; color: var(--secondary);">
+			                    <li><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 8px;"></i> Orientación a resultados y cumplimiento de objetivos de negocio.</li>
+			                    <li><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 8px;"></i> Comunicación transparente y gestión de expectativas a nivel C-Level.</li>
+			                    <li><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 8px;"></i> Liderazgo empático enfocado al desarrollo y retención del talento.</li>
+			                </ul>
+			            </div>
+			
+			            <!-- Bloque de Datos de Contacto directos -->
+			            <div style="display: flex; flex-direction: column; gap: 15px;">
+			                <h3 style="font-size: 1.2rem; margin-bottom: 5px; color: var(--primary);">Datos de Contacto</h3>
+			                
+			                <a href="mailto:rubenmartingutierrez@gmail.com" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--secondary);" class="base-card" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+			                    <i class="fa-solid fa-envelope" style="font-size: 1.2rem; color: var(--accent);"></i>
+			                    <div>
+			                        <strong style="display: block; font-size: 0.85rem; color: var(--primary);">Correo Electrónico</strong>
+			                        <span>rubenmartingutierrez@gmail.com</span>
+			                    </div>
+			                </a>
+			
+			                <a href="https://linkedin.com/in/ruben-martin-gutierrez" target="_blank" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--secondary);" class="base-card" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+			                    <i class="fa-brands fa-linkedin" style="font-size: 1.2rem; color: var(--accent);"></i>
+			                    <div>
+			                        <strong style="display: block; font-size: 0.85rem; color: var(--primary);">LinkedIn</strong>
+			                        <span>linkedin.com/in/ruben-martin-gutierrez</span>
+			                    </div>
+			                </a>
+			
+							<div style="display: flex; align-items: center; gap: 12px; padding: 24px; background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius);">
+							    <i class="fa-solid fa-mobile-screen-button" style="font-size: 1.2rem; color: var(--secondary);"></i>
+							    <div>
+							        <strong style="display: block; font-size: 0.85rem; color: var(--primary);">Teléfono</strong>
+							        <span>+34 679 899327</span>
+							    </div>
+							</div>
+			
+			            </div>
+			        </div>
+			    </div>
+			</div>
 
         </div>
     </div>
