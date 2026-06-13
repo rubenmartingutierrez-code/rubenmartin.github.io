@@ -161,19 +161,11 @@
             overflow-x: auto;
             padding-bottom: 10px;
 			display: grid;
-   			/* Distribuye las tarjetas en columnas que se adaptan solas (mínimo 300px) */
-   			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    		gap: 20px;
-    		padding-bottom: 10px;
-    		overflow-x: hidden; /* Oculta por completo el scroll horizontal interno */
         }
         .timeline-card {
             flex: 0 0 300px;
             display: flex;
             flex-direction: column;
-			flex: 1 1 300px; /* Cambia el flex: 0 0 300px estático que tenías */
-    		display: flex;
-    		flex-direction: column;
         }
         .timeline-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
         .timeline-card h4 { font-size: 1rem; font-weight: 500; color: var(--secondary); }
@@ -268,6 +260,48 @@
             .content-wrapper { padding: 20px; }
             .level-content { flex-direction: column; }
         }
+
+		/* --- ESTILOS PARA TARJETAS DESPLEGABLES --- */
+
+		/* Por defecto, el contenido largo está oculto y no ocupa espacio */
+		.expandable-content {
+		    max-height: 0;
+		    overflow: hidden;
+		    transition: max-height 0.4s ease-out;
+		}
+		
+		/* Clase que se añadirá con JavaScript cuando se pulse el botón */
+		.expandable-content.open {
+		    max-height: 200px; /* Un tamaño lo bastante amplio para que quepa el párrafo */
+		    margin-top: 10px;
+		}
+		
+		/* Estilo para el botón "Ver más" alineado con tus colores */
+		.toggle-btn {
+		    background: none;
+		    border: none;
+		    color: var(--accent);
+		    font-size: 0.85rem;
+		    font-weight: 600;
+		    cursor: pointer;
+		    padding: 8px 0 0 0;
+		    display: flex;
+		    align-items: center;
+		    gap: 6px;
+		    transition: var(--transition);
+		}
+		
+		.toggle-btn:hover {
+		    color: var(--primary);
+		}
+		
+		/* Animación de rotación para la flecha del botón */
+		.toggle-btn i {
+		    transition: transform 0.3s ease;
+		}
+		.toggle-btn.active i {
+		    transform: rotate(180deg);
+		}
     </style>
 </head>
 <body>
@@ -352,14 +386,23 @@
         <div class="tender-grid">
             
             <!-- Pilar 1 -->
-            <div class="base-card">
-                <div class="tender-icon"><i class="fa-solid fa-people-roof"></i></div>
-                <h3 class="tender-title">Coordinación de Equipos y Soporte</h3>
-                <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Liderazgo de Personas</div>
-                <p class="tender-desc">
-                    Dirección diaria de equipos de soporte técnico multicanal. Organización de flujos de trabajo basados en tableros Kanban y dinámicas de sincronización ágiles para optimizar el rendimiento y la motivación del equipo.
-                </p>
-            </div>
+			<div class="base-card">
+			    <div class="tender-icon"><i class="fa-solid fa-people-roof"></i></div>
+			    <h3 class="tender-title">Coordinación de Equipos y Soporte</h3>
+			    <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Liderazgo de Personas</div>
+			    
+			    <!-- NUEVO: Contenedor colapsable para la descripción -->
+			    <div class="expandable-content">
+			        <p class="tender-desc">
+			            Dirección diaria de equipos de soporte técnico multicanal. Organización de flujos de trabajo basados en tableros Kanban y dinámicas de sincronización ágiles para optimizar el rendimiento y la motivación del equipo.
+			        </p>
+			    </div>
+			    
+			    <!-- NUEVO: Botón para accionar el despliegue -->
+			    <button class="toggle-btn" onclick="toggleCard(this)">
+			        Ver más <i class="fa-solid fa-chevron-down"></i>
+			    </button>
+			</div>
 
             <!-- Pilar 2 -->
             <div class="base-card">
@@ -665,6 +708,23 @@
             isScrolling = false;
         }, 150);
     });
+	function toggleCard(button) {
+	    // Buscamos el contenedor expandible que está justo antes del botón pulsado
+	    const content = button.previousElementSibling;
+	    
+	    // Alternamos la clase para abrir/cerrar el texto
+	    content.classList.toggle('open');
+	    
+	    // Alternamos la clase en el botón para que la flecha gire
+	    button.classList.toggle('active');
+	    
+	    // Cambiamos el texto del botón según corresponda
+	    if (content.classList.contains('open')) {
+	        button.innerHTML = 'Ver menos <i class="fa-solid fa-chevron-down"></i>';
+	    } else {
+	        button.innerHTML = 'Ver más <i class="fa-solid fa-chevron-down"></i>';
+	    }
+	}
    </script>
 </body>
 </html>
