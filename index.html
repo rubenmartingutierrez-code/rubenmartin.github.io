@@ -40,39 +40,14 @@
         }
 
         /* --- 3. CONTENEDOR DE SCROLL HORIZONTAL --- */
-		/* Contenedor general de la sección (el contenedor que scrolleará) */
-		.timeline-section {
-			width: 100%;
-			overflow-x: auto;
-			overflow-y: hidden;
-			white-space: nowrap; /* Evita que las tarjetas salten de línea hacia abajo */
-			padding-bottom: 80px; /* Espacio sagrado abajo para que camine el personaje */
-		}
-
-		/* El contenedor Flex que envuelve las tarjetas */
-		.timeline-container {
-			display: inline-flex; /* Forza el comportamiento horizontal continuo */
-			flex-direction: row;
-			align-items: flex-start; /* Ancla todas las tarjetas estrictamente arriba */
-			gap: 24px;
-			padding: 10px;
-		}
-
-		/* Las tarjetas individuales */
-		.timeline-card {
-			flex: 0 0 350px; /* Ancho fijo para que mantengan la estructura de tarjeta */
-			width: 350px;
-			height: 380px; /* Forzamos la misma altura exacta para todas */
-			background: #ffffff;
-			border-radius: 8px;
-			box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
-			white-space: normal; /* Permite que el texto de dentro sí rompa en líneas normales */
-			box-sizing: border-box;
-			padding: 20px;
-		}
+        .scroll-container {
+			scroll-snap-type: x mandatory; /* Fuerza el anclaje horizontal */
+            width: 100%;
+            height: 100vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+        }
 
         /* Personalizar scrollbar */
         .scroll-container::-webkit-scrollbar {
@@ -181,19 +156,17 @@
 
         /* --- ITEM 2: TRAYECTORIA (CORREGIDO) --- */
         .timeline-container {
-			display: flex;
+            display: flex;
             flex-direction: row;
-            align-items: stretch; /* Alinea arriba y estira todas las tarjetas a la misma altura */
             gap: 20px;
             overflow-x: auto;
-            padding-bottom: 25px; /* Espacio de seguridad para la barra de scroll */
+            padding-bottom: 15px;
             width: 100%;
         }
         .timeline-card {
-			flex: 0 0 300px; /* Evita que las tarjetas se encojan horizontalmente */
+            flex: 0 0 300px; /* Evita que las tarjetas se encojan */
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
         }
         .timeline-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
         .timeline-card h4 { font-size: 1rem; font-weight: 500; color: var(--secondary); }
@@ -360,13 +333,7 @@
                             <span class="client">Gobierno de Aragón</span>
                             <div class="divider"></div>
                             <p class="impact-title">Impacto</p>
-							<div class="expandable-content">
-								<p class="impact-text">Dirección integral del desarrollo e implantación de un sistema crítico para la administración autonómica, asegurando el cumplimiento de pliegos técnicos y plazos institucionales.</p>
-							</div>							
-							<!-- Botón para accionar el despliegue -->
-							<button class="toggle-btn" onclick="toggleCard(this)">
-								Ver más <i class="fa-solid fa-chevron-down"></i>
-							</button>
+                            <p class="impact-text">Dirección integral del desarrollo e implantación de un sistema crítico para la administración autonómica, asegurando el cumplimiento de pliegos técnicos y plazos institucionales.</p>
                         </div>
 
                         <div class="base-card timeline-card">
@@ -376,13 +343,7 @@
                             <span class="client">CTTI (Agricultura)</span>
                             <div class="divider"></div>
                             <p class="impact-title">Impacto</p>
-							<div class="expandable-content">
-								<p class="impact-text">Gestión de negocio e interlocución con stakeholders clave. Captación de requerimientos complejos y adjudicación de soluciones orientadas a la optimización de fondos públicos.</p>
-							</div>							
-							<!-- Botón para accionar el despliegue -->
-							<button class="toggle-btn" onclick="toggleCard(this)">
-								Ver más <i class="fa-solid fa-chevron-down"></i>
-							</button>
+                            <p class="impact-text">Gestión de negocio e interlocución con stakeholders clave. Captación de requerimientos complejos y adjudicación de soluciones orientadas a la optimización de fondos públicos.</p>
                         </div>
 
                         <div class="base-card timeline-card">
@@ -392,13 +353,7 @@
                             <span class="client">Gestión de Servicios AM</span>
                             <div class="divider"></div>
                             <p class="impact-title">Impacto</p>
-							<div class="expandable-content">
-								<p class="impact-text">Dirección operativa y continuidad de un servicio crítico sectorial. Liderazgo de equipos de soporte, garantizando la estabilidad y el estricto cumplimiento de SLAs.</p>
-							</div>							
-							<!-- Botón para accionar el despliegue -->
-							<button class="toggle-btn" onclick="toggleCard(this)">
-								Ver más <i class="fa-solid fa-chevron-down"></i>
-							</button>
+                            <p class="impact-text">Dirección operativa y continuidad de un servicio crítico sectorial. Liderazgo de equipos de soporte, garantizando la estabilidad y el estricto cumplimiento de SLAs.</p>
                         </div>
 
                         <div class="base-card timeline-card">
