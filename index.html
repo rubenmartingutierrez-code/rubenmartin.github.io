@@ -35,59 +35,17 @@
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--bg-main);
             color: var(--primary);
-            overflow: hidden; /* Oculta el scroll vertical del body */
+            overflow: hidden; /* Mantiene bloqueado el scroll nativo del body */
         }
 
-        /* --- 3. CONTENEDOR DE SCROLL HORIZONTAL DE TRAYECTORIA --- */
-        .timeline-section {
-            width: 100%;
-            overflow-x: auto;
+        /* --- CONTENEDOR PRINCIPAL DE LA WEB (Vuelve a activar el scroll de páginas) --- */
+        .scroll-container {
+            width: 100vw;
+            height: 100vh;
+            overflow-x: auto; /* Permite moverte entre secciones */
             overflow-y: hidden;
-            white-space: nowrap; /* Evita que las tarjetas salten de línea */
-            padding-bottom: 40px; /* Margen para respirar y albergar al personaje si es necesario */
-        }
-
-        .timeline-container {
-            display: inline-flex; /* Fuerza el comportamiento horizontal continuo */
-            flex-direction: row;
-            align-items: flex-start; /* Ancla todas las tarjetas estrictamente arriba */
-            gap: 24px;
-            padding: 10px 5px;
-        }
-
-        .timeline-card {
-            flex: 0 0 320px; /* Ancho fijo optimizado */
-            width: 320px;
-            background: #ffffff;
-            border-radius: var(--radius);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            white-space: normal; /* Permite el salto de línea del texto interno */
-            box-sizing: border-box;
-        }
-
-        /* Resto de elementos de la tarjeta de trayectoria */
-        .timeline-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
-        .timeline-card h4 { font-size: 1rem; font-weight: 500; color: var(--secondary); }
-        .timeline-card .client { font-size: 0.85rem; color: #94a3b8; display: block; margin-top: 5px; }
-        .divider { height: 1px; background: var(--border); margin: 15px 0; }
-        .impact-title { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--secondary); letter-spacing: 0.5px; margin-bottom: 5px; }
-        .impact-text { font-size: 0.9rem; line-height: 1.5; color: var(--secondary); }
-
-        /* Personalizar scrollbar general */
-        .scroll-container::-webkit-scrollbar {
-            height: 8px;
-        }
-        .scroll-container::-webkit-scrollbar-track {
-            background: #e2e8f0;
-        }
-        .scroll-container::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 4px;
-        }
-        .scroll-container::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary);
+            scroll-snap-type: x mandatory; /* Bloqueo de secciones al scrollear */
+            -webkit-overflow-scrolling: touch;
         }
 
         .scroll-content {
@@ -105,9 +63,66 @@
             justify-content: center;
             position: relative;
             padding: 40px;
-            overflow-y: auto; /* Permite scroll vertical interno si el contenido es muy alto */
+            box-sizing: border-box;
             scroll-snap-align: start; 
             scroll-snap-stop: always;
+        }
+
+        /* --- CONTENEDOR DE LA TRAYECTORIA (Scroll interno horizontal protegido) --- */
+        .timeline-section {
+            width: 100%;
+            overflow-x: auto; /* Permite el scroll de las tarjetas */
+            overflow-y: hidden;
+            padding-bottom: 20px; /* Espacio para la barra de scroll de las tarjetas */
+            box-sizing: border-box;
+        }
+
+        .timeline-container {
+            display: flex; 
+            flex-direction: row;
+            align-items: flex-start; /* Fuerza a anclarse ARRIBA */
+            gap: 24px;
+            padding: 10px 5px;
+            width: max-content; /* Obliga a mantener las tarjetas en una fila infinita */
+        }
+
+        .timeline-card {
+            flex: 0 0 320px; /* Ancho de tarjeta consistente */
+            width: 320px;
+            background: #ffffff;
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            white-space: normal; /* Permite saltos de texto normales */
+            box-sizing: border-box;
+        }
+
+        /* Elementos internos de las tarjetas de trayectoria */
+        .timeline-card h3 { font-size: 1.2rem; margin-bottom: 5px; white-space: normal; }
+        .timeline-card h4 { font-size: 1rem; font-weight: 500; color: var(--secondary); white-space: normal; }
+        .timeline-card .client { font-size: 0.85rem; color: #94a3b8; display: block; margin-top: 5px; }
+        .divider { height: 1px; background: var(--border); margin: 15px 0; }
+        .impact-title { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--secondary); letter-spacing: 0.5px; margin-bottom: 5px; }
+        .impact-text { font-size: 0.9rem; line-height: 1.5; color: var(--secondary); }
+
+        /* Personalizar scrollbars globales */
+        .scroll-container::-webkit-scrollbar,
+        .timeline-section::-webkit-scrollbar {
+            height: 8px;
+        }
+        .scroll-container::-webkit-scrollbar-track,
+        .timeline-section::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        .scroll-container::-webkit-scrollbar-thumb,
+        .timeline-section::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb:hover,
+        .timeline-section::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
         }
 
         /* Contenedor interno estandarizado */
@@ -118,6 +133,8 @@
             padding: 40px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
         }
 
         /* Títulos de sección */
@@ -247,7 +264,7 @@
             color: var(--secondary);
         }
         
-        /* Personaje posicionado de forma fija para evitar colisiones */
+        /* Personaje flotante seguro */
         .character {
             position: fixed;
             bottom: 50px;
@@ -259,7 +276,7 @@
             background-repeat: no-repeat;
             background-position: center;
             z-index: 1000;
-            pointer-events: none; /* Evita que bloquee los clicks de la web */
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
@@ -276,7 +293,7 @@
         }
         
         .expandable-content.open {
-            max-height: 300px; /* Espacio de sobra para cualquier párrafo */
+            max-height: 300px;
             margin-top: 10px;
         }
         
@@ -291,7 +308,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            margin-top: auto; /* Empuja el botón siempre al fondo de la tarjeta */
+            margin-top: auto; /* Empuja el botón al fondo */
             transition: var(--transition);
         }
         
@@ -313,7 +330,6 @@
     <div class="scroll-container" id="scrollContainer">
         <div class="scroll-content">
             
-            <!-- SECCIÓN 1: HOME -->
             <div class="scroll-item">
                 <div>
                     <h1 class="hero-title">Rubén Martín</h1>
@@ -321,7 +337,6 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN 2: TRAYECTORIA (CON CONTENEDOR INCORPORADO) -->
             <div class="scroll-item">
                 <div class="content-wrapper">
                     <div class="section-header">
@@ -329,11 +344,9 @@
                         <p>Evolución y roles clave en la gestión de servicios críticos.</p>
                     </div>
                     
-                    <!-- AQUÍ ESTÁ LA CORRECCIÓN: Encapsulado en .timeline-section -->
                     <div class="timeline-section">
                         <div class="timeline-container">
                             
-                            <!-- Tarjeta 1 -->
                             <div class="base-card timeline-card">
                                 <span class="badge">2019 - 2021</span>
                                 <h3>Jefe de Proyecto</h3>
@@ -349,7 +362,6 @@
                                 </button>
                             </div>
 
-                            <!-- Tarjeta 2 -->
                             <div class="base-card timeline-card">
                                 <span class="badge">2021 - 2024</span>
                                 <h3>Responsable Venta Proyectos</h3>
@@ -365,7 +377,6 @@
                                 </button>
                             </div>
 
-                            <!-- Tarjeta 3 -->
                             <div class="base-card timeline-card">
                                 <span class="badge" style="background:#dcfce7; color:#166534;">2024 - Pres.</span>
                                 <h3>Service Manager</h3>
@@ -381,7 +392,6 @@
                                 </button>
                             </div>
 
-                            <!-- Tarjeta 4 -->
                             <div class="base-card timeline-card">
                                 <span class="badge" style="background:#dcfce7; color:#166534;">2025 - Pres.</span>
                                 <h3>Project Manager Licitación</h3>
@@ -396,7 +406,6 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN 3: ÉXITO OPERATIVO Y GESTIÓN DE EQUIPOS -->
             <div class="scroll-item">
                 <div class="content-wrapper">
                     <div class="section-header">
@@ -411,7 +420,6 @@
                     </div>
 
                     <div class="tender-grid">
-                        <!-- Pilar 1 -->
                         <div class="base-card">
                             <div class="tender-icon"><i class="fa-solid fa-people-roof"></i></div>
                             <h3 class="tender-title">Coordinación de Equipos y Soporte</h3>
@@ -426,7 +434,6 @@
                             </button>
                         </div>
 
-                        <!-- Pilar 2 -->
                         <div class="base-card">
                             <div class="tender-icon"><i class="fa-solid fa-clock-check"></i></div>
                             <h3 class="tender-title">Garantía y Cumplimiento de SLAs</h3>
@@ -441,7 +448,6 @@
                             </button>
                         </div>
 
-                        <!-- Pilar 3 -->
                         <div class="base-card">
                             <div class="tender-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
                             <h3 class="tender-title">Mitigación Preventiva del Riesgo</h3>
@@ -459,7 +465,6 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN 4: EFICIENCIA FINANCIERA -->
             <div class="scroll-item">
                 <div class="content-wrapper">
                     <div class="section-header">
@@ -488,7 +493,7 @@
                             <div class="tender-client"><i class="fa-solid fa-angles-right"></i> Optimización de Procesos</div>
                             <div class="expandable-content">
                                 <p class="tender-desc">
-                                    Liderazgo en initiatives de transformación interna. Implementación de automatizaciones en tareas recurrentes de soporte y monitorización, logrando reducir los tiempos de operación manual y reasignando el talento a tareas de valor.
+                                    Liderazgo en iniciativas de transformación interna. Implementación de automatizaciones en tareas recurrentes de soporte y monitorización, logrando reducir los tiempos de operación manual y reasignando el talento a tareas de valor.
                                 </p>
                             </div>
                             <button class="toggle-btn" onclick="toggleCard(this)">
@@ -513,7 +518,6 @@
                 </div>
             </div>
             
-            <!-- SECCIÓN 5: LICITACIONES -->
             <div class="scroll-item">
                 <div class="content-wrapper">
                     <div class="section-header">
@@ -527,7 +531,7 @@
                             <h3 class="tender-title">Oferta Completa: Registro de Cooperativas</h3>
                             <div class="tender-client"><i class="fa-solid fa-building"></i> Gobierno de Aragón</div>
                             <div class="expandable-content">
-                                <p class="tender-desc">Liderazgo en la confección y defensa técnica de la oferta que resultó en la adjudicación estratégica del proyecto, garantizando el cumplimiento normativo.</p>
+                                <p class="tender-desc">Liderazgo en la confección y defense técnica de la oferta que resultó en la adjudicación estratégica del proyecto, garantizando el cumplimiento normativo.</p>
                             </div>
                             <button class="toggle-btn" onclick="toggleCard(this)">
                                 Ver más <i class="fa-solid fa-chevron-down"></i>
@@ -561,7 +565,6 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN 6: INTERLOCUTORES -->
             <div class="scroll-item">
                 <div class="content-wrapper">
                     <div class="section-header">
@@ -606,7 +609,6 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN 7: HOJA DE RUTA -->
             <div class="scroll-item">
                 <div class="content-wrapper">
                     <div class="section-header">
@@ -639,7 +641,6 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN 8: CONTACTO -->
             <div class="scroll-item">
                 <div class="content-wrapper">
                     <div class="section-header">
@@ -674,20 +675,15 @@
         </div>
     </div>
 
-    <!-- --- JAVASCRIPT CORREGIDO Y OPERATIVO --- */ -->
     <script>
         function toggleCard(button) {
-            // Buscamos el contenedor colapsable dentro de la misma tarjeta del botón pulsado
             const card = button.closest('.base-card');
             const content = card.querySelector('.expandable-content');
             
             if (content) {
-                // Alternamos la clase .open para desplegar el texto con CSS
                 content.classList.toggle('open');
-                // Alternamos la clase .active en el botón para que gire el icono del chevron
                 button.classList.toggle('active');
                 
-                // Cambiamos el texto dinámicamente según su estado
                 if (content.classList.contains('open')) {
                     button.innerHTML = `Ver menos <i class="fa-solid fa-chevron-down"></i>`;
                 } else {
