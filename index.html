@@ -160,11 +160,20 @@
             gap: 20px;
             overflow-x: auto;
             padding-bottom: 10px;
+			display: grid;
+   			/* Distribuye las tarjetas en columnas que se adaptan solas (mínimo 300px) */
+   			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    		gap: 20px;
+    		padding-bottom: 10px;
+    		overflow-x: hidden; /* Oculta por completo el scroll horizontal interno */
         }
         .timeline-card {
             flex: 0 0 300px;
             display: flex;
             flex-direction: column;
+			flex: 1 1 300px; /* Cambia el flex: 0 0 300px estático que tenías */
+    		display: flex;
+    		flex-direction: column;
         }
         .timeline-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
         .timeline-card h4 { font-size: 1rem; font-weight: 500; color: var(--secondary); }
