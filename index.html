@@ -75,7 +75,7 @@
             flex: 0 0 100vw;
             height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             position: relative;
             padding: 40px;
@@ -245,17 +245,17 @@
         }
         
         /* Personaje (Oculto por defecto si no hay imagen, pero posicionado) */
-        .character {
+		.character {
             position: fixed;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 20px;          /* Distancia desde el borde inferior */
+            left: 40px;            /* Anclado de forma fija a la izquierda */
             width: 120px;
             height: 120px;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
             z-index: 1000;
+            transition: transform 0.1s ease; /* Suaviza el giro al cambiar de dirección */
         }
 
         @media (max-width: 768px) {
