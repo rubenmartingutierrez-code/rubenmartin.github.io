@@ -70,18 +70,20 @@
             width: max-content;
         }
 
-        /* Cada sección ocupa el 100% del ancho y alto de la pantalla */
-        .scroll-item {
+		.scroll-item {
             flex: 0 0 100vw;
             height: 100vh;
             display: flex;
-            align-items: flex-start;
+            align-items: flex-start; /* Alinea al inicio (arriba) */
             justify-content: center;
             position: relative;
-            padding: 40px;
+            
+            /* MODIFICACIÓN: Arriba | Derecha | Abajo | Izquierda */
+            padding: 5px 40px 40px 40px; 
+            
             overflow-y: auto; /* Permite scroll vertical interno si el contenido es muy alto */
-			scroll-snap-align: start; /* Indica dónde debe encajar cada sección */
-   			scroll-snap-stop: always;
+            scroll-snap-align: start; /* Indica dónde debe encajar cada sección */
+            scroll-snap-stop: always;
         }
 
         /* Contenedor interno estandarizado para cada sección */
@@ -89,14 +91,14 @@
             max-width: 1100px;
             width: 100%;
             background: var(--bg-card);
-            padding: 40px;
+			padding: 20px 40px 40px 40px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
         }
 
         /* Títulos de sección */
         .section-header {
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             padding-bottom: 15px;
             border-bottom: 2px solid var(--border);
         }
