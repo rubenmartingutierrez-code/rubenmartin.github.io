@@ -87,11 +87,11 @@
         }
 
         /* Contenedor interno estandarizado para cada sección */
-        .content-wrapper {
-            max-width: 1100px;
+		.content-wrapper {
+            max-width: 1300px; 
             width: 100%;
             background: var(--bg-card);
-			padding: 20px 40px 40px 40px;
+            padding: 20px 40px 40px 40px; 
             border-radius: var(--radius);
             box-shadow: var(--shadow);
         }
@@ -157,22 +157,23 @@
         }
 
         /* --- ITEM 2: TRAYECTORIA (CORREGIDO A HORIZONTAL) --- */
-        .timeline-container {
-            display: flex;
-            flex-direction: row;
+		.timeline-container {
+            display: grid;
+            /* Forzamos 4 columnas idénticas que se reparten el 100% del ancho de la tarjeta blanca */
+            grid-template-columns: repeat(4, 1fr); 
             gap: 20px;
-            overflow-x: auto;
-            padding-bottom: 15px;
             width: 100%;
+            padding-bottom: 10px;
         }
         
         /* Asegura que las tarjetas mantengan su ancho en la fila horizontal */
-        .timeline-card {
-            flex: 0 0 280px; 
+		.timeline-card {
+            /* Eliminamos el 'flex: 0 0 300px' para que la tarjeta use el espacio dinámico del Grid */
+            width: 100%; 
             display: flex;
             flex-direction: column;
         }
-        .timeline-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
+		.timeline-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
         .timeline-card h4 { font-size: 1rem; font-weight: 500; color: var(--secondary); }
         .timeline-card .client { font-size: 0.85rem; color: #94a3b8; display: block; margin-top: 5px; }
         .divider { height: 1px; background: var(--border); margin: 15px 0; }
@@ -223,14 +224,27 @@
         .sh-desc { font-size: 0.9rem; color: var(--secondary); }
 
         /* --- ITEM 5: HOJA DE RUTA --- */
-        .roadmap-container {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding-bottom: 20px;
+		.roadmap-container {
+            display: grid;
+            /* Forzamos 5 columnas idénticas para que entren las fases 0, 1, 2, 3 y 4 en una sola línea */
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 15px; /* Un pelín más estrecho el espacio para que respiren bien los textos */
+            width: 100%;
+            padding-bottom: 10px;
         }
-        .phase-card {
-            flex: 0 0 280px;
+		.phase-card {
+            /* Eliminamos el flex estático para que se adapte al tamaño de la pantalla */
+            width: 100%; 
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            transition: var(--transition);
+        }
+		.phase-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
         }
         .phase-label {
             font-size: 0.75rem;
@@ -261,11 +275,31 @@
         }
 
         @media (max-width: 768px) {
-            .scroll-item { padding: 20px; }
+			/* Mantiene un margen correcto en pantallas de móviles */
+            .scroll-item { padding: 0px 20px 20px 20px; } /* Ajustado a 0px arriba para mantener tu nuevo diseño */
             .content-wrapper { padding: 20px; }
+            
+            /* Evita que las tarjetas de "Interlocutores" se corten en el móvil */
             .level-content { flex-direction: column; }
-            .timeline-container { flex-direction: column; }
-            .timeline-card { flex: 1 1 auto; }
+			.roadmap-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+            }
+        }
+		
+		@media (max-width: 1200px) {
+			.roadmap-container {
+                grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+            }
+        }
+        @media (max-width: 600px) {
+            .timeline-container {
+                grid-template-columns: 1fr; /* 1 columna en móviles */
+            }
+        }
+		@media (max-width: 480px) {
+            .roadmap-container {
+                grid-template-columns: 1fr; /* 1 columna en móviles verticales */
+            }
         }
 
 		/* --- ESTILOS PARA TARJETAS DESPLEGABLES --- */
